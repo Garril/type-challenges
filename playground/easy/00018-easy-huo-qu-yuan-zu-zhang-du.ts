@@ -21,14 +21,20 @@
 */
 
 /* _____________ 你的代码 _____________ */
-
-type Length<T> = any
+/* 记得是只读的 */
+type Length<T extends readonly any[]> = T['length']
 
 /* _____________ 测试用例 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
 
 const tesla = ['tesla', 'model 3', 'model X', 'model Y'] as const
-const spaceX = ['FALCON 9', 'FALCON HEAVY', 'DRAGON', 'STARSHIP', 'HUMAN SPACEFLIGHT'] as const
+const spaceX = [
+  'FALCON 9',
+  'FALCON HEAVY',
+  'DRAGON',
+  'STARSHIP',
+  'HUMAN SPACEFLIGHT'
+] as const
 
 type cases = [
   Expect<Equal<Length<typeof tesla>, 4>>,
@@ -36,7 +42,7 @@ type cases = [
   // @ts-expect-error
   Length<5>,
   // @ts-expect-error
-  Length<'hello world'>,
+  Length<'hello world'>
 ]
 
 /* _____________ 下一步 _____________ */

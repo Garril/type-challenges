@@ -21,8 +21,21 @@
 */
 
 /* _____________ 你的代码 _____________ */
-
+/* extends限制为一个数组
+  [infer F, ...infer _] 表示将数组类型 T 分解为首元素 F 和剩余元素（使用 _ 表示命名不重要）。
+  F 表示首元素的类型。
+  never 表示条件不满足时返回的类型。
+ */
 type First<T extends any[]> = T extends [infer F, ...infer _] ? F : never
+/* 其他方法
+// 利用isEmpty判断数组是否为空
+法一：  Array.isEmpty(arr) ? undefined : arr[0];
+=》   type First<T extends any[]> = T['length'] extends 0 ? never : T[0];
+
+// 或者利用length判断数组是否为空
+法二：  arr.length === 0 ? undefined : arr[0];
+=》   type First<T extends any[]> = T extends [] ? never : T[0];
+*/
 
 /* _____________ 测试用例 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

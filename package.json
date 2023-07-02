@@ -13,8 +13,8 @@
     "lint": "eslint .",
     "translate": "esno ./scripts/translate-cli.ts",
     "utils:release": "pnpm -C utils release",
-    "update": "pnpm generate --keep-changes",
-    "commit": "SET NODE_OPTIONS=--openssl-legacy-provider &&  cz"
+    "update": "git pull originRep main && pnpm generate --keep-changes",
+    "commit": "git add .&& SET NODE_OPTIONS=--openssl-legacy-provider &&  cz"
   },
   "dependencies": {
     "esno": "^0.16.3",
